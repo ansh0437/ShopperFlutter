@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // remove the comment for this line
 import 'package:provider/provider.dart';
-import 'package:shopper/localization/app_translation_delegate.dart';
-import 'package:shopper/notifiers/app_notifier.dart';
 import 'package:shopper/app/navigator.dart';
 import 'package:shopper/constants/pages.dart';
 import 'package:shopper/data/preferences.dart';
+import 'package:shopper/generated/l10n.dart';
+import 'package:shopper/notifiers/app_notifier.dart';
+
+import 'constants/strings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +15,12 @@ void main() async {
   /// Loading shared preferences
   await SharedPref.load();
 
-  runApp(ChangeNotifierProvider<AppNotifier>(
-    create: (_) => AppNotifier(),
-    child: ShopperApp(),
-  ));
+  runApp(
+    ChangeNotifierProvider<AppNotifier>(
+      create: (_) => AppNotifier(),
+      child: ShopperApp(),
+    ),
+  );
 }
 
 class ShopperApp extends StatefulWidget {
@@ -37,23 +40,17 @@ class _ShopperAppState extends State<ShopperApp> {
     final appNotifier = Provider.of<AppNotifier>(context);
 
     return MaterialApp(
-      title: 'Shopper',
+      title: Strings.appName,
       debugShowCheckedModeBanner: false,
-      theme: appNotifier.getTheme(),
-      // localizationsDelegates: AppLocalizations.localizationsDelegates,
-      // supportedLocales: AppLocalizations.supportedLocales,
+      theme: appNotifier.theme,
+      locale: appNotifier.locale,
       localizationsDelegates: [
-        // ... app-specific localization delegate[s] here
-        // AppLocalizations.delegate, // remove the comment for this line
-        AppTranslationsDelegate(newLocale: appNotifier.getLocale()),
+        LocalizedStrings.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('en', ''), // English
-        const Locale('hi', ''), // Hindi
-      ],
+      supportedLocales: LocalizedStrings.delegate.supportedLocales,
       initialRoute: Pages.dashboard,
       routes: ShopperNavigator.routes,
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopper/app/pages/base/base.dart';
 import 'package:shopper/data/preferences.dart';
-import 'package:shopper/localization/app_translation.dart';
+import 'package:shopper/generated/l10n.dart';
 
 import '../../../notifiers/app_notifier.dart';
 
@@ -12,25 +12,31 @@ class Settings extends BasePage {
 }
 
 class _SettingsState extends BaseState<Settings> {
-  bool darkTheme = false;
+  bool _darkMode = false;
+  bool _hindiLanguage = false;
 
   AppNotifier _appNotifier;
 
   @override
   void initState() {
     super.initState();
-    getTheme();
+    _darkMode = ShopperPreference.darkMode.getBoolean();
+    _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
   }
 
-  void getTheme() {
-    darkTheme = ShopperPreference.darkMode.getBoolean();
-  }
-
-  void onChange(bool value) {
+  void onThemeChange(bool value) {
     ShopperPreference.darkMode.save(value);
     setState(() {
-      darkTheme = ShopperPreference.darkMode.getBoolean();
+      _darkMode = ShopperPreference.darkMode.getBoolean();
       _appNotifier.changeTheme();
+    });
+  }
+
+  void onLanguageChange(bool value) {
+    ShopperPreference.hindiLanguage.save(value);
+    setState(() {
+      _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
+      _appNotifier.changeLanguage();
     });
   }
 
@@ -43,20 +49,24 @@ class _SettingsState extends BaseState<Settings> {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          title: Text("Settings"),
+          title: Text(LocalizedStrings.of(context).settings),
         ),
         body: Container(
-          child: Center(
-            child: Row(
-              children: [
-                // Text("Change App Theme"),
-                Text(AppTranslations.of(context).text("change_app_theme")),
-                Switch(
-                  value: darkTheme,
-                  onChanged: onChange,
-                ),
-              ],
-            ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(LocalizedStrings.of(context).changeAppTheme),
+                  Switch(value: _darkMode, onChanged: onThemeChange),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(LocalizedStrings.of(context).changeAppLang),
+                  Switch(value: _hindiLanguage, onChanged: onLanguageChange),
+                ],
+              ),
+            ],
           ),
         ),
       ),

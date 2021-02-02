@@ -5,21 +5,24 @@ import 'package:shopper/data/preferences.dart';
 
 class AppNotifier with ChangeNotifier {
   bool _darkMode = false;
+  bool _hindiLanguage = false;
 
   AppNotifier() {
     _darkMode = ShopperPreference.darkMode.getBoolean();
+    _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
   }
 
-  ThemeData getTheme() {
-    return _darkMode ? darkTheme : lightTheme;
-  }
+  ThemeData get theme => _darkMode ? darkTheme : lightTheme;
 
-  Locale getLocale() {
-    return _darkMode ? Locale("hi") : Locale("en");
-  }
+  Locale get locale => _hindiLanguage ? Locale("hi") : Locale("en");
 
   changeTheme() {
     _darkMode = ShopperPreference.darkMode.getBoolean();
+    notifyListeners();
+  }
+
+  changeLanguage() {
+    _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
     notifyListeners();
   }
 }

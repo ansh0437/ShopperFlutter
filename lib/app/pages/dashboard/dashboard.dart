@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopper/app/pages/base/base.dart';
 import 'package:shopper/constants/pages.dart';
-import 'package:shopper/localization/app_translation.dart';
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shopper/generated/l10n.dart';
 
 class Dashboard extends BasePage {
   @override
@@ -17,13 +16,12 @@ class _DashboardState extends BaseState<Dashboard> {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          title: Text("Dashboard"),
+          title: Text(LocalizedStrings.of(context).dashboard),
         ),
         body: Container(
           child: Center(
             child: RaisedButton(
-              // child: Text("Open Settings"),
-              child: Text(AppTranslations.of(context).text("open_settings")),
+              child: Text(LocalizedStrings.of(context).openSettings),
               onPressed: () {
                 push(Pages.settings);
               },
