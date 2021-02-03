@@ -8,8 +8,8 @@ class AppNotifier with ChangeNotifier {
   bool _hindiLanguage = false;
 
   AppNotifier() {
-    _darkMode = ShopperPreference.darkMode.getBoolean();
-    _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
+    _darkMode = ShopperPreference.darkMode.boolean;
+    _hindiLanguage = ShopperPreference.hindiLanguage.boolean;
   }
 
   ThemeData get theme => _darkMode ? darkTheme : lightTheme;
@@ -17,12 +17,12 @@ class AppNotifier with ChangeNotifier {
   Locale get locale => _hindiLanguage ? Locale("hi") : Locale("en");
 
   changeTheme() {
-    _darkMode = ShopperPreference.darkMode.getBoolean();
+    _darkMode = ShopperPreference.darkMode.boolean;
     notifyListeners();
   }
 
   changeLanguage() {
-    _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
+    _hindiLanguage = ShopperPreference.hindiLanguage.boolean;
     notifyListeners();
   }
 }

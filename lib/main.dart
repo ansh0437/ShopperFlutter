@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shopper/app/navigator.dart';
+import 'package:shopper/app/pages/base/base_statefull.dart';
 import 'package:shopper/constants/pages.dart';
 import 'package:shopper/data/preferences.dart';
 import 'package:shopper/generated/l10n.dart';
@@ -15,6 +16,7 @@ void main() async {
   /// Loading shared preferences
   await SharedPref.load();
 
+  /// Listening for app theme and language change
   runApp(
     ChangeNotifierProvider<AppNotifier>(
       create: (_) => AppNotifier(),
@@ -23,13 +25,13 @@ void main() async {
   );
 }
 
-class ShopperApp extends StatefulWidget {
+class ShopperApp extends BasePage {
   /// This widget is the root of your application.
   @override
   _ShopperAppState createState() => _ShopperAppState();
 }
 
-class _ShopperAppState extends State<ShopperApp> {
+class _ShopperAppState extends BaseState<ShopperApp> {
   @override
   void initState() {
     super.initState();

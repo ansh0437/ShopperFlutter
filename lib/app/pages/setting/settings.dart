@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopper/app/pages/base/base.dart';
+import 'package:shopper/app/pages/base/base_statefull.dart';
 import 'package:shopper/data/preferences.dart';
 import 'package:shopper/generated/l10n.dart';
 
@@ -20,23 +20,23 @@ class _SettingsState extends BaseState<Settings> {
   @override
   void initState() {
     super.initState();
-    _darkMode = ShopperPreference.darkMode.getBoolean();
-    _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
+    _darkMode = ShopperPreference.darkMode.boolean;
+    _hindiLanguage = ShopperPreference.hindiLanguage.boolean;
   }
 
   void onThemeChange(bool value) {
     ShopperPreference.darkMode.save(value);
+    _appNotifier.changeTheme();
     setState(() {
-      _darkMode = ShopperPreference.darkMode.getBoolean();
-      _appNotifier.changeTheme();
+      _darkMode = value;
     });
   }
 
   void onLanguageChange(bool value) {
     ShopperPreference.hindiLanguage.save(value);
+    _appNotifier.changeLanguage();
     setState(() {
-      _hindiLanguage = ShopperPreference.hindiLanguage.getBoolean();
-      _appNotifier.changeLanguage();
+      _hindiLanguage = value;
     });
   }
 

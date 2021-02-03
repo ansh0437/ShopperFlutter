@@ -3,10 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /*
  *  Shopper app shared preferences.
  */
-enum ShopperPreference {
-  darkMode,
-  hindiLanguage
-}
+enum ShopperPreference { darkMode, hindiLanguage }
 
 /*
  *  Shopper app shared preference extension for retrieving data. 
@@ -16,11 +13,7 @@ extension ShopperPreferenceExtension on ShopperPreference {
 
   String get string => SharedPref().getString(this.toString());
 
-  String getString({String defaultValue = ""}) =>
-      SharedPref().getString(this.toString());
-
-  bool getBoolean({bool defaultValue = false}) =>
-      SharedPref().getBoolean(this.toString());
+  bool get boolean => SharedPref().getBoolean(this.toString());
 }
 
 /*

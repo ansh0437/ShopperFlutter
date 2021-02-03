@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopper/app/pages/base/base.dart';
+import 'package:shopper/app/pages/base/base_statefull.dart';
 import 'package:shopper/constants/pages.dart';
 import 'package:shopper/generated/l10n.dart';
 
@@ -12,7 +12,7 @@ class _DashboardState extends BaseState<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: disablePop,
+      onWillPop: willPop,
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
@@ -23,7 +23,7 @@ class _DashboardState extends BaseState<Dashboard> {
             child: RaisedButton(
               child: Text(LocalizedStrings.of(context).openSettings),
               onPressed: () {
-                push(Pages.settings);
+                pushPage(Pages.settings);
               },
             ),
           ),
