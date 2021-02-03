@@ -48,25 +48,27 @@ class _SettingsState extends BaseState<Settings> {
       onWillPop: willPop,
       child: Scaffold(
         key: scaffoldKey,
-        appBar: AppBar(
-          title: Text(LocalizedStrings.of(context).settings),
-        ),
-        body: Container(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(LocalizedStrings.of(context).changeAppTheme),
-                  Switch(value: _darkMode, onChanged: onThemeChange),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(LocalizedStrings.of(context).changeAppLang),
-                  Switch(value: _hindiLanguage, onChanged: onLanguageChange),
-                ],
-              ),
-            ],
+        // appBar: AppBar(
+        //   title: Text(LocalizedStrings.of(context).settings),
+        // ),
+        body: SafeArea(
+          child: Container(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(LocalizedStrings.of(context).changeAppTheme),
+                    Switch(value: _darkMode, onChanged: onThemeChange),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(LocalizedStrings.of(context).changeAppLang),
+                    Switch(value: _hindiLanguage, onChanged: onLanguageChange),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

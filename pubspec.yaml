@@ -38,6 +38,10 @@ dependencies:
   # Provider
   provider: ^4.3.3
 
+  # Bottom Navigation
+  # bubbled_navigation_bar: ^0.0.3
+  # bottom_navy_bar: ^5.6.0
+
 
 dev_dependencies:
   flutter_test:

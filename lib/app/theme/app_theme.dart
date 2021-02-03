@@ -9,6 +9,7 @@ final darkTheme = ThemeData(
   accentIconTheme: IconThemeData(color: Colors.black),
   dividerColor: Colors.black12,
   buttonTheme: ButtonThemeData(buttonColor: Colors.red),
+  bottomAppBarColor: Colors.black,
 );
 
 final lightTheme = ThemeData(
@@ -20,4 +21,5 @@ final lightTheme = ThemeData(
   accentIconTheme: IconThemeData(color: Colors.white),
   dividerColor: Colors.white54,
   buttonTheme: ButtonThemeData(buttonColor: Colors.blue.shade300),
+  bottomAppBarColor: Colors.blueGrey.shade50,
 );
