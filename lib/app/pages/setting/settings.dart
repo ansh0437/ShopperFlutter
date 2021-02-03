@@ -48,9 +48,9 @@ class _SettingsState extends BaseState<Settings> {
       onWillPop: willPop,
       child: Scaffold(
         key: scaffoldKey,
-        // appBar: AppBar(
-        //   title: Text(LocalizedStrings.of(context).settings),
-        // ),
+        appBar: AppBar(
+          title: Text(LocalizedStrings.of(context).settings),
+        ),
         body: SafeArea(
           child: Container(
             child: Column(

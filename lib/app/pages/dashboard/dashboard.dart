@@ -16,15 +16,14 @@ class _DashboardState extends BaseState<Dashboard> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: willPop,
-      child: SafeArea(
-        child: Scaffold(
-          key: scaffoldKey,
-          // appBar: AppBar(
-          //   title: Text(LocalizedStrings.of(context).dashboard),
-          // ),
-          bottomNavigationBar: BottomNavyBar(
+      child: Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+          title: Text(LocalizedStrings.of(context).dashboard),
+        ),
+        bottomNavigationBar: SafeArea(
+          child: BottomNavyBar(
             selectedIndex: _currentIndex,
-            showElevation: false, // use this to remove appBar's elevation
             onItemSelected: (index) => setState(() {
               _currentIndex = index;
               // _selectedIndex = index;
@@ -58,7 +57,9 @@ class _DashboardState extends BaseState<Dashboard> {
               ),
             ],
           ),
-          body: Container(
+        ),
+        body: SafeArea(
+          child: Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
