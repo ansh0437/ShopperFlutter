@@ -71,16 +71,19 @@ class BottomNavyBar extends StatelessWidget {
         : backgroundColor;
 
     return Container(
-      margin: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
+      // margin: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
       padding: EdgeInsets.all(4.0),
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(36.0),
-        // boxShadow: [
-        //   // if (showElevation)
-        //   const BoxShadow(
-        //       color: Colors.black12, blurRadius: 2, spreadRadius: 2.0),
-        // ],
+        // borderRadius: BorderRadius.circular(36.0),
+        boxShadow: [
+          if (showElevation)
+            const BoxShadow(
+              color: Colors.black26,
+              blurRadius: 4,
+              spreadRadius: 2.0,
+            ),
+        ],
       ),
       child: SafeArea(
         child: Container(

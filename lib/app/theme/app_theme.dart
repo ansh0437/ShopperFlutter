@@ -21,5 +21,5 @@ final lightTheme = ThemeData(
   accentIconTheme: IconThemeData(color: Colors.white),
   dividerColor: Colors.white54,
   buttonTheme: ButtonThemeData(buttonColor: Colors.blue.shade300),
-  bottomAppBarColor: Colors.blueGrey.shade100,
+  bottomAppBarColor: Colors.blueGrey.shade50,
 );

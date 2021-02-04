@@ -18,59 +18,65 @@ class _DashboardState extends BaseState<Dashboard> {
       onWillPop: willPop,
       child: Scaffold(
         key: scaffoldKey,
-        appBar: AppBar(
-          title: Text(LocalizedStrings.of(context).dashboard),
-        ),
+        // appBar: AppBar(
+        //   title: Text(LocalizedStrings.of(context).dashboard),
+        // ),
         bottomNavigationBar: SafeArea(
           child: BottomNavyBar(
             selectedIndex: _currentIndex,
             onItemSelected: (index) => setState(() {
               _currentIndex = index;
-              // _selectedIndex = index;
-              // _pageController.animateToPage(index,
-              // duration: Duration(milliseconds: 300), curve: Curves.ease);
             }),
             items: [
               BarItem(
-                icon: Icon(Icons.apps),
+                icon: Icon(Icons.home),
                 title: Text('Home'),
                 activeColor: Colors.red,
-                // inactiveColor: Theme.of(context).accentColor,
               ),
               BarItem(
                 icon: Icon(Icons.people),
                 title: Text('Users'),
                 activeColor: Colors.purple,
-                // inactiveColor: Theme.of(context).accentColor,
               ),
               // BarItem(
               //   icon: Icon(Icons.message),
               //   title: Text('Messages'),
               //   activeColor: Colors.green,
-              //   // inactiveColor: Theme.of(context).accentColor,
               // ),
               BarItem(
                 icon: Icon(Icons.settings),
                 title: Text('Settings'),
                 activeColor: Colors.blue,
-                // inactiveColor: Theme.of(context).accentColor,
               ),
             ],
           ),
         ),
         body: SafeArea(
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                RaisedButton(
-                  child: Text(LocalizedStrings.of(context).openSettings),
-                  onPressed: () {
-                    pushPage(Pages.settings);
-                  },
-                ),
-              ],
-            ),
+          top: false,
+          child: NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  expandedHeight: 200.0,
+                  floating: false,
+                  pinned: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Text(LocalizedStrings.of(context).dashboard),
+                    centerTitle: true,
+                    background: Container(color: Colors.red),
+                  ),
+                  actions: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.settings),
+                      tooltip: LocalizedStrings.of(context).settings,
+                      onPressed: () => pushPage(Pages.settings),
+                    ),
+                  ],
+                )
+              ];
+            },
+            body: Container(child: Column(children: [])),
           ),
         ),
       ),
